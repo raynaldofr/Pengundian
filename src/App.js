@@ -97,7 +97,7 @@ const App = () => {
             parsedParticipants.push({
               id: crypto.randomUUID(), // Add a unique ID for easier tracking
               name: name || 'Tidak Ada Nama', // Default if empty
-              keterangan: keterangan || 'Tidak Ada Keterangan', // Changed from phone
+              keterangan: keterangan || 'Tidak Ada Keterangan', // Default if empty
               code: code || 'Tidak Ada Kode' // Default if empty
             });
           }
@@ -137,9 +137,9 @@ const App = () => {
     }
 
     // Updated headers for CSV download
-    const headers = 'Waktu Pengundian,Nama Pemenang,Keterangan,Nomor Code Pemenang,Hadiah\n'; // Changed No HP to Keterangan
+    const headers = 'Waktu Pengundian,Nama Pemenang,Keterangan,Nomor Code Pemenang,Hadiah\n';
     const csvContent = winnersHistory.map(item =>
-      `${item.timestamp},"${item.winner.name}","${item.winner.keterangan}","${item.winner.code}","${item.prize}"` // Changed item.winner.phone to item.winner.keterangan
+      `${item.timestamp},"${item.winner.name}","${item.winner.keterangan}","${item.winner.code}","${item.prize}"`
     ).join('\n');
 
     const fullCsv = headers + csvContent;
@@ -165,7 +165,7 @@ const App = () => {
   // Function to download sample CSV file
   const handleDownloadSampleCSV = () => {
     // Updated sample data
-    const sampleData = `Nama Peserta,Keterangan,Nomor Code Peserta\nBudi Santoso,Keterangan Budi,ABC001\nSiti Aminah,Keterangan Siti,XYZ002\nJoko Susilo,Keterangan Joko,PQR003\nMaria Dewi,Keterangan Maria,LMN004`; // Changed No HP to Keterangan
+    const sampleData = `Nama Peserta,Keterangan,Nomor Code Peserta\nBudi Santoso,Keterangan Budi,ABC001\nSiti Aminah,Keterangan Siti,XYZ002\nJoko Susilo,Keterangan Joko,PQR003\nMaria Dewi,Keterangan Maria,LMN004`;
     const blob = new Blob([sampleData], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     if (link.download !== undefined) {
